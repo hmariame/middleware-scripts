@@ -1,0 +1,41 @@
+#!/bin/bash
+          #author:mariame
+          #date: fev/2023
+# Script to Install Sonarqube On Centos 7 #
+
+#!/bin/bash
+
+sudo yum update -y
+
+sudo yum install java-11-openjdk-devel -y
+
+sudo yum install java-11-openjdk -y
+
+cd /opt
+
+sudo yum install wget -y
+
+sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.3.0.51899.zip
+
+sudo yum install unzip -y
+
+sudo unzip /opt/sonarqube-9.3.0.51899.zip
+
+sudo chown -R vagrant:vagrant /opt/sonarqube-9.3.0.51899
+
+cd /opt/sonarqube-x.x/bin/linux-x86-64 
+
+
+ ./sonar.sh start
+
+
+ sudo yum install firewalld -y
+
+ sudo systemctl enable firewalld
+
+ sudo systemctl start firewalld
+
+ sudo firewall-cmd --permanent --add-port=9000/tcp
+ 
+
+ sudo firewall-cmd --reload
